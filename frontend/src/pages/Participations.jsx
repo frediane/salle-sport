@@ -8,19 +8,7 @@ export default function Participations() {
   const [membre, setMembre] = useState('');
   const [seance, setSeance] = useState('');
   const [message, setMessage] = useState(null); // { type: 'ok' | 'erreur', texte }
-
-  const charger = async () => {
-    const [m, s, p] = await Promise.all([
-      api.get('membres/'),
-      api.get('seances/'),
-      api.get('participations/'),
-    ]);
-    setMembres(m.data);
-    setSeances(s.data);
-    setParticipations(p.data);
-  };
-
-    const [version, setVersion] = useState(0);
+  const [version, setVersion] = useState(0);
   const recharger = () => setVersion((v) => v + 1);
 
   useEffect(() => {
@@ -63,7 +51,7 @@ export default function Participations() {
     <div>
       <h2>Participations</h2>
 
-      <form onSubmit={inscrire} style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+      <form onSubmit={inscrire} className="form-grid">
         <select value={membre} onChange={(e) => setMembre(e.target.value)} required>
           <option value="">-- Membre --</option>
           {membres.map((m) => (
@@ -88,7 +76,8 @@ export default function Participations() {
         <p style={{ color: message.type === 'ok' ? 'green' : 'red' }}>{message.texte}</p>
       )}
 
-      <table border="1" cellPadding="6" style={{ marginTop: 20 }}>
+      <div className="table-wrap">
+        <table >
         <thead>
           <tr><th>Membre</th><th>Séance</th><th></th></tr>
         </thead>
@@ -103,5 +92,7 @@ export default function Participations() {
         </tbody>
       </table>
     </div>
+      </div>
+      
   );
 }

@@ -110,7 +110,7 @@ export default function CrudPage({ titre, endpoint, champs, colonnes, recherche 
     <div>
       <h2>{titre}</h2>
 
-      <form onSubmit={handleSubmit} style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+      <form onSubmit={handleSubmit} className="form-grid">
         {champs.map(renderChamp)}
         <button type="submit">{editId ? 'Enregistrer' : 'Ajouter'}</button>
         {editId && <button type="button" onClick={annuler}>Annuler</button>}
@@ -126,25 +126,27 @@ export default function CrudPage({ titre, endpoint, champs, colonnes, recherche 
         />
       )}
 
-      <table border="1" cellPadding="6" style={{ marginTop: 20 }}>
-        <thead>
-          <tr>
-            {colonnes.map((c) => <th key={c.titre}>{c.titre}</th>)}
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {lignes.map((l) => (
-            <tr key={l.id}>
-              {colonnes.map((c) => <td key={c.titre}>{c.valeur(l)}</td>)}
-              <td>
-                <button onClick={() => modifier(l)}>Modifier</button>{' '}
-                <button onClick={() => supprimer(l.id)}>Supprimer</button>
-              </td>
+      <div className="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              {colonnes.map((c) => <th key={c.titre}>{c.titre}</th>)}
+              <th></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {lignes.map((l) => (
+              <tr key={l.id}>
+                {colonnes.map((c) => <td key={c.titre}>{c.valeur(l)}</td>)}
+                <td>
+                  <button onClick={() => modifier(l)}>Modifier</button>{' '}
+                  <button onClick={() => supprimer(l.id)}>Supprimer</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
