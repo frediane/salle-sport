@@ -17,8 +17,8 @@ class MembreSerializer(serializers.ModelSerializer):
         model = Membre
         fields = '__all__'
 
-        def get_est_a_jour(self, obj):
-           return obj.est_a_jour()
+    def get_est_a_jour(self, obj):
+        return obj.est_a_jour()
 
 class PaiementSerializer(serializers.ModelSerializer):
     membre_nom = serializers.CharField(source='membre.__str__', read_only=True)

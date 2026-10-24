@@ -4,8 +4,8 @@ import api from '../api';
 function Carte({ titre, valeur, couleur }) {
   return (
     <div className="carte">
-      <div className="valeur" style={{ color: couleur }}>{valeur}</div>
-      <div>{titre}</div>
+      <span className="carte-valeur" style={{ color: couleur }}>{valeur}</span>
+      <span className="carte-titre">{titre}</span>
     </div>
   );
 }

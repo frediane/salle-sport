@@ -1,122 +1,97 @@
 :root {
-  --bg: #f4f6fb;
-  --card: #ffffff;
-  --primary: #4f46e5;
-  --primary-dark: #4338ca;
-  --text: #1f2937;
-  --muted: #6b7280;
-  --danger: #dc2626;
-  --success: #16a34a;
-  --border: #e5e7eb;
+  --fond: #f4f6fb;
+  --carte: #ffffff;
+  --texte: #1f2937;
+  --principal: #2563eb;
+  --bordure: #e5e7eb;
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  font-family: system-ui, Arial, sans-serif;
+  background: var(--fond);
+  color: var(--texte);
 }
 
-/* Barre de navigation */
-nav {
+.navbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 4px;
-  padding: 12px 24px;
-  background: var(--card);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-  position: sticky;
-  top: 0;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #111827;
 }
-
-nav a {
-  padding: 8px 14px;
-  border-radius: 8px;
-  color: var(--muted);
+.navbar a {
+  color: #d1d5db;
   text-decoration: none;
-  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 6px;
 }
+.navbar a:hover { background: #1f2937; }
+.navbar a.active { background: var(--principal); color: #fff; font-weight: bold; }
+.deconnexion { margin-left: auto; background: #dc2626; color: #fff; }
 
-nav a:hover { background: var(--bg); color: var(--text); }
-nav a.active { background: var(--primary); color: #fff; }
+.page { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
 
-nav button { margin-left: auto; }
+h2 { margin-top: 0; }
 
-/* Contenu */
-main, .page {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 24px;
-}
-
-h2 { margin: 0 0 20px; }
-h3 { margin: 32px 0 12px; }
-
-/* Boutons */
-button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  background: var(--primary);
-  color: #fff;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-button:hover { background: var(--primary-dark); }
-
-/* Cartes de statistiques */
-.stats {
+.cartes {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
+  margin-bottom: 24px;
 }
-
-.stat-card {
-  background: var(--card);
+.carte {
+  background: var(--carte);
+  border-radius: 12px;
   padding: 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.carte-valeur { font-size: 32px; font-weight: bold; }
+.carte-titre { color: #6b7280; }
+
+button {
+  min-height: 40px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background: var(--principal);
+  color: #fff;
+  cursor: pointer;
+}
+button:hover { opacity: .9; }
+
+input, select {
+  min-height: 40px;
+  padding: 8px 10px;
+  border: 1px solid var(--bordure);
+  border-radius: 6px;
+  background: #fff;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  background: var(--carte);
+  padding: 16px;
   border-radius: 12px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
 }
 
-.stat-card .value { font-size: 32px; font-weight: 700; }
-.stat-card .label { color: var(--muted); margin-top: 4px; }
-.stat-card .value.danger { color: var(--danger); }
-.stat-card .value.success { color: var(--success); }
-
-/* Blocs et listes */
-.card {
-  background: var(--card);
-  padding: 20px;
+.table-wrap {
+  margin-top: 20px;
+  overflow-x: auto;
+  background: var(--carte);
   border-radius: 12px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
 }
-
-.card ul { list-style: none; margin: 0; padding: 0; }
-.card li { padding: 10px 0; border-bottom: 1px solid var(--border); }
-.card li:last-child { border-bottom: none; }
-
-/* Tableaux (pages Membres, Paiements, etc.) */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--card);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-}
-
-th {
-  text-align: left;
-  background: var(--bg);
-  color: var(--muted);
-  font-size: 13px;
-  text-transform: uppercase;
-}
-
-th, td { padding: 12px 16px; }
-tr:not(:last-child) td { border-bottom: 1px solid var(--border); }
-
+table { width: 100%; border-collapse: collapse; }
+th { background: #f9fafb; text-align: left; }
+th, td { padding: 10px 14px; border-bottom: 1px solid var(--bordure); }
+tr:hover td { background: #f9fafb; }
